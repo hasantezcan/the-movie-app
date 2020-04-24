@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -14,6 +16,16 @@ function App() {
 
   const apiurl = `https://www.omdbapi.com/?apikey=${state.apiKey}`;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios(apiurl + "&s=" + state.searchQuery).then(({ data }) => {
+      let results = data.Search;
+      console.log(data);
+      setState((prevState) => {
+        return { ...prevState, results: results };
+      });
+    });
+  };
 
   const handleInput = (e) => {
     let newSearchQuery = e.target.value;
@@ -28,7 +40,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <SearchBar onChange={handleInput} />
+      <SearchBar onChange={handleInput} onSubmit={handleSubmit} />
     </div>
   );
 }
