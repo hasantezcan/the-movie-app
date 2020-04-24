@@ -1,10 +1,12 @@
 import React from 'react';
+import Nav from '../Nav/Nav'
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1> The movie app </h1>
+      <Nav />
     </div>
   );
 }

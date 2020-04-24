@@ -1,0 +1,10 @@
+.sub-nav {
+    height: 100%;
+    /* justify-content: center; */
+    display: flex;
+    align-items: center;
+}
+
+.sub-navbar {
+    height: 30px;
+}
