@@ -8,7 +8,7 @@ const Nav = () => {
       <nav className="black">
         <div className=" nav-wrapper container">
           <a href="/" className="brand-logo">
-            The Movie App
+            Movie APP
           </a>
         </div>
       </nav>

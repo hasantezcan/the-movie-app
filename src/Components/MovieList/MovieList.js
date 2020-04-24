@@ -7,7 +7,13 @@ const MovieList = (props) => {
       <div className="row">
         <div className="col s12">
           {props.movies.map((movie, i) => {
-            return <Movie key={movie.imdbID} movie={movie} />;
+            return (
+              <Movie
+                key={movie.imdbID}
+                movie={movie}
+                openPopup={props.openPopup}
+              />
+            );
           })}
         </div>
       </div>

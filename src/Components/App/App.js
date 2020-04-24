@@ -4,6 +4,7 @@ import axios from "axios";
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
 import MovieList from "../MovieList/MovieList";
+import MovieInfo from "../MovieInfo/MovieInfo";
 
 import "./App.css";
 
@@ -11,9 +12,10 @@ function App() {
   const [state, setState] = useState({
     searchQuery: "",
     movies: [],
-    selected: {},
+    selected: null,
     apiKey: process.env.REACT_APP_API_KEY,
   });
+  // console.log(state.selected);
 
   const apiurl = `https://www.omdbapi.com/?apikey=${state.apiKey}`;
 
@@ -38,11 +40,33 @@ function App() {
     console.log(state.searchQuery);
   };
 
+  const openPopup = (id) => {
+    axios(apiurl + "&i=" + id).then(({ data }) => {
+      let result = data;
+
+      setState((prevState) => {
+        return { ...prevState, selected: result };
+      });
+    });
+  };
+
+  const closePopup = () => {
+    setState((prevState) => {
+      return { ...prevState, selected: null };
+    });
+  };
+
   return (
     <div className="App">
       <Nav />
-      <SearchBar onChange={handleInput} onSubmit={handleSubmit} />
-      <MovieList movies={state.movies} />
+      {state.selected == null ? (
+        <div>
+          <SearchBar onChange={handleInput} onSubmit={handleSubmit} />
+          <MovieList movies={state.movies} openPopup={openPopup} />
+        </div>
+      ) : (
+        <MovieInfo selected={state.selected} closePopup={closePopup} />
+      )}
     </div>
   );
 }

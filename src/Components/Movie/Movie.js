@@ -1,7 +1,7 @@
 import React from "react";
 // import MovieList from "./MovieList";
 
-const Movie = ({movie}) => {
+const Movie = ({ movie, openPopup }) => {
   return (
     <div className="col s12 m6 l3">
       <div className="card">
@@ -24,13 +24,12 @@ const Movie = ({movie}) => {
           </span> */}
         </div>
         <div className="card-content">
-          <p> {movie.Title.substring(0,25)} </p>
-          {/* <p>
-            <a href="#" onClick={() => props.viewMovieInfo(props.movieId)}>
-              {" "}
-              View details{" "}
+          <p> {movie.Title.substring(0, 25)} </p>
+          <p>
+            <a href="#" onClick={() => openPopup(movie.imdbID)}>
+              View details
             </a>
-          </p> */}
+          </p>
         </div>
       </div>
     </div>
