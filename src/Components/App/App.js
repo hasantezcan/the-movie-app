@@ -3,13 +3,14 @@ import axios from "axios";
 
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
+import MovieList from "../MovieList/MovieList";
 
 import "./App.css";
 
 function App() {
   const [state, setState] = useState({
     searchQuery: "",
-    results: [],
+    movies: [],
     selected: {},
     apiKey: process.env.REACT_APP_API_KEY,
   });
@@ -22,7 +23,7 @@ function App() {
       let results = data.Search;
       console.log(data);
       setState((prevState) => {
-        return { ...prevState, results: results };
+        return { ...prevState, movies: results };
       });
     });
   };
@@ -41,6 +42,7 @@ function App() {
     <div className="App">
       <Nav />
       <SearchBar onChange={handleInput} onSubmit={handleSubmit} />
+      <MovieList movies={state.movies} />
     </div>
   );
 }
