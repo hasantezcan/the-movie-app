@@ -1,14 +1,31 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Nav from '../Nav/Nav'
 import SearchBar from "../SearchBar/SearchBar";
 
 import './App.css';
 
 function App() {
+  const [state, setState] = useState({
+    searchQuery: "",
+    results: [],
+    selected: {},
+  });
+
+  const handleInput = (e) => {
+    let newSearchQuery = e.target.value;
+
+    setState((prevState) => {
+      return { ...prevState, searchQuery: newSearchQuery };
+    });
+
+    console.log(state.searchQuery);
+  };
+
+
   return (
     <div className="App">
       <Nav />
-      <SearchBar />
+      <SearchBar onChange={handleInput} />
     </div>
   );
 }
