@@ -23,7 +23,7 @@ function App() {
     e.preventDefault();
     axios(apiurl + "&s=" + state.searchQuery).then(({ data }) => {
       let results = data.Search;
-      console.log(data);
+      //console.log(data);
       setState((prevState) => {
         return { ...prevState, movies: results };
       });
@@ -37,7 +37,7 @@ function App() {
       return { ...prevState, searchQuery: newSearchQuery };
     });
 
-    console.log(state.searchQuery);
+    //console.log(state.searchQuery);
   };
 
   const openPopup = (id) => {
